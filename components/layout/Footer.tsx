@@ -15,9 +15,9 @@ export function Footer() {
               Affordable websites for local businesses that need more trust online. We build clean, mobile-friendly websites and keep them updated monthly.
             </p>
             <div className="pt-2 flex flex-col space-y-1 text-sm text-cloud">
-              <span>Austin, TX</span>
-              <a href="mailto:hello@locallift.local" className="text-lift-blue hover:text-white transition-colors underline-offset-4 hover:underline">
-                hello@locallift.local
+              <span>Downingtown, Pennsylvania</span>
+              <a href="mailto:localliftstudio@gmail.com" className="text-lift-blue hover:text-white transition-colors underline-offset-4 hover:underline">
+                localliftstudio@gmail.com
               </a>
             </div>
           </div>
