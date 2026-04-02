@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
@@ -107,14 +107,17 @@ export function Header() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
           >
-            <div className="flex flex-col space-y-6 flex-grow">
+            <div className="flex flex-col flex-grow mt-4">
               {links.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-2xl font-sans font-bold text-lift-navy border-b border-border-color pb-4"
+                  className="flex items-center justify-between py-5 border-b border-border-color group"
                 >
-                  {link.name}
+                  <span className="text-3xl font-sans font-bold text-lift-navy group-hover:text-lift-blue transition-colors">
+                    {link.name}
+                  </span>
+                  <ChevronRight className="w-6 h-6 text-muted-slate group-hover:text-lift-blue transition-colors" />
                 </Link>
               ))}
             </div>
