@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-manrope);
+  --font-body: var(--font-inter);
+  
+  --color-lift-navy: #0F172A;
+  --color-lift-blue: #1D4ED8;
+  --color-lift-blue-hover: #1E40AF;
+  --color-soft-blue: #EFF6FF;
+  --color-badge-blue: #DBEAFE;
+  --color-cloud: #F8FAFC;
+  --color-slate-text: #475569;
+  --color-muted-slate: #94A3B8;
+  --color-border-color: #E2E8F0;
+  --color-success: #16A34A;
+  --color-error: #DC2626;
+
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  
+  --radius-button: 12px;
+  --radius-input: 12px;
+  --radius-card: 16px;
+  --radius-frame: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-light: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 12px 32px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.10);
+  
+  --spacing-section-dt-y: 104px;
+  --spacing-section-tb-y: 80px;
+  --spacing-section-mb-y: 56px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    color: var(--color-lift-navy);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
