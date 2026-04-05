@@ -13,10 +13,38 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const planName = searchParams.get('plan');
   
-  // Check if we just redirected back from formsubmit
-  const isSubmitted = searchParams.get('submitted') === 'true';
+  // Track submission status
+  const [status, setStatus] = React.useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  if (isSubmitted) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/localliftstudio@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
     return (
       <Card className="p-8 md:p-12 border-border-color shadow-card bg-white text-center flex flex-col items-center justify-center min-h-[400px]">
         <div className="w-16 h-16 bg-success/10 text-success rounded-full flex items-center justify-center mb-6">
@@ -29,17 +57,18 @@ function ContactForm() {
         <p className="text-slate-text text-sm max-w-md mx-auto">
            Kunj or Aryan will review your details and email you back at the address provided within <strong className="text-lift-navy">1 business day</strong>.
         </p>
+        <Button variant="outline" className="mt-8" onClick={() => setStatus('idle')}>
+          Send Another Message
+        </Button>
       </Card>
     );
   }
 
   return (
     <Card className="p-6 md:p-8 border-border-color shadow-card bg-white relative">
-      <form action="https://formsubmit.co/localliftstudio@gmail.com" method="POST" className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         
         {/* Formsubmit Settings */}
-        {/* Replace the URL below with your actual deployed domain once you launch */}
-        <input type="hidden" name="_next" value="http://localhost:3000/contact?submitted=true" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_subject" value="New Website Inquiry" />
 
@@ -58,9 +87,10 @@ function ContactForm() {
               id="name" 
               name="name"
               type="text" 
-              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all disabled:opacity-50" 
               placeholder="John Doe" 
               required 
+              disabled={status === 'submitting'}
             />
           </div>
           <div className="space-y-2">
@@ -69,9 +99,10 @@ function ContactForm() {
               id="email" 
               name="email"
               type="email" 
-              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all disabled:opacity-50" 
               placeholder="john@company.com" 
               required 
+              disabled={status === 'submitting'}
             />
           </div>
         </div>
@@ -83,9 +114,10 @@ function ContactForm() {
               id="business" 
               name="business_name"
               type="text" 
-              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all disabled:opacity-50" 
               placeholder="Acme Services" 
               required 
+              disabled={status === 'submitting'}
             />
           </div>
           <div className="space-y-2">
@@ -94,8 +126,9 @@ function ContactForm() {
               id="url" 
               name="website_url"
               type="url" 
-              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all disabled:opacity-50" 
               placeholder="https://example.com" 
+              disabled={status === 'submitting'}
             />
           </div>
         </div>
@@ -106,14 +139,32 @@ function ContactForm() {
             id="help" 
             name="message"
             rows={4} 
-            className="w-full rounded-[12px] border border-border-color bg-white p-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all resize-none" 
+            className="w-full rounded-[12px] border border-border-color bg-white p-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all resize-none disabled:opacity-50" 
             placeholder="Please describe your current challenges or goals quickly..." 
             required 
+            disabled={status === 'submitting'}
           />
         </div>
 
-        <Button type="submit" size="lg" className="w-full md:w-auto mt-2">
-          Send Message
+        {status === 'error' && (
+          <p className="text-error text-sm font-medium">Something went wrong. Please try again or email us directly.</p>
+        )}
+
+        <Button 
+          type="submit" 
+          size="lg" 
+          className="w-full md:w-auto mt-2 transition-all relative disabled:bg-slate-300"
+          disabled={status === 'submitting'}
+        >
+          {status === 'submitting' ? (
+            <span className="flex items-center">
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Sending...
+            </span>
+          ) : 'Send Message'}
         </Button>
       </form>
     </Card>
