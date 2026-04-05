@@ -10,28 +10,31 @@ import { Reveal, RevealList } from '@/components/animations/Reveal';
 
 const projects = [
   {
-    title: 'Pipeline Pros Redesign',
-    businessType: 'Local Plumber',
-    type: 'Sample Work',
-    oldProblem: 'Outdated site that was impossible to navigate on mobile devices, causing local leads to bounce before calling.',
-    improvements: ['Mobile-optimized usability', 'Sticky click-to-call headers', 'Dedicated service-area pages for local SEO'],
-    image: 'https://images.unsplash.com/photo-1581094363628-8da22d106f23?q=80&w=2400&auto=format&fit=crop',
+    title: 'Oak & Stone',
+    businessType: 'Kitchen & Bath',
+    type: 'Authority Build',
+    oldProblem: 'A luxury business stuck with a generic, template-based site that failed to showcase their high-end craftsmanship and authority in the market.',
+    improvements: ['Luxury editorial design', 'Custom component animations', 'Authority-tier local SEO structure'],
+    image: '/images/Screenshot 2026-04-05 at 4.32.44 PM.png',
+    link: 'https://oak-and-stone.vercel.app/',
   },
   {
-    title: 'Sunny Smiles Dental Center',
-    businessType: 'Family Dentist',
-    type: 'Sample Work',
-    oldProblem: 'No online booking integration and a generic template look that didn\'t build trust with new patients.',
-    improvements: ['Clear booking calendar integration', 'Trust-building team bios', 'Prominent patient reviews section'],
-    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2400&auto=format&fit=crop',
+    title: 'Brandywine',
+    businessType: 'Landscaping',
+    type: 'Growth Build',
+    oldProblem: 'Inconsistent branding and a cluttered mobile experience made it difficult for homeowners to find specific service details or request quotes.',
+    improvements: ['Service-specific landing pages', 'Optimized mobile lead capture', 'Strategic keyword mapping'],
+    image: '/images/Screenshot 2026-04-05 at 4.33.09 PM.png',
+    link: 'https://brandywine-landscaping.vercel.app/',
   },
   {
-    title: 'Elite Edge Landscape',
-    businessType: 'Landscaping & Hardscaping',
-    type: 'Sample Work',
-    oldProblem: 'Extremely slow loading images and a confusing breakdown of what services they actually offered.',
-    improvements: ['Highly optimized project gallery', 'Frictionless lead capture forms', 'Speed optimization for mobile'],
-    image: 'https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2400&auto=format&fit=crop',
+    title: 'Shine & Shield',
+    businessType: 'Auto Detailing',
+    type: 'Launch Build',
+    oldProblem: 'No online presence whatsoever, missing out on thousands of local searchers looking for high-quality mobile detailing services.',
+    improvements: ['High-performance landing page', 'Integrated booking triggers', 'Mobile-first localized SEO'],
+    image: '/images/Screenshot 2026-04-05 at 4.34.04 PM.png',
+    link: 'https://demo-shine-and-shield.vercel.app/',
   }
 ];
 
@@ -63,7 +66,7 @@ export default function Work() {
               
               {/* Mockup Frame */}
               <div className="w-full lg:w-3/5">
-                <div className="rounded-[16px] md:rounded-[20px] border border-border-color bg-white shadow-card overflow-hidden">
+                <Link href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="block rounded-[16px] md:rounded-[20px] border border-border-color bg-white shadow-card overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   <div className="h-6 md:h-8 border-b border-border-color bg-cloud flex items-center px-4">
                     <div className="flex space-x-2">
                       <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
@@ -72,9 +75,9 @@ export default function Work() {
                     </div>
                   </div>
                   <div className="relative aspect-[4/3] w-full bg-muted-slate/10 overflow-hidden">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" />
                   </div>
-                </div>
+                </Link>
               </div>
 
               {/* Project Info */}

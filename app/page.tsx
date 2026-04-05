@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Check, ArrowRight, MonitorSmartphone, Zap, Search, Shield, Settings, CheckCircle2, Play, Plus, Minus } from 'lucide-react';
+import { ArrowRight, BarChart3, Check, CheckCircle2, MapPin, Minus, MonitorSmartphone, Play, Plus, Search, Settings, Shield, ShieldCheck, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -14,29 +14,24 @@ export default function Home() {
 
   return (
     <>
-      {/* 1. Announcement Bar */}
-      <div className="bg-lift-navy text-white py-2.5 text-center text-sm font-body font-medium flex items-center justify-center">
-        <span>Transparent pricing. Ongoing support. No agency fluff.</span>
-      </div>
-
       {/* 3. Hero Section */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden px-4">
         {/* Soft Radial Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-soft-blue rounded-full blur-[100px] opacity-60 pointer-events-none" />
-        
+
         <div className="container mx-auto max-w-[1200px] relative z-10 text-center">
           <Reveal>
             <h1 className="text-[38px] leading-[46px] md:text-[56px] md:leading-[64px] font-sans font-extrabold text-lift-navy max-w-4xl mx-auto tracking-tight">
               Affordable websites for local businesses that need more trust online
             </h1>
           </Reveal>
-          
+
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg md:text-[18px] leading-[30px] font-body text-slate-text max-w-2xl mx-auto">
               LocalLift builds clean, mobile-friendly websites for local businesses and keeps them updated monthly so owners can focus on running the business.
             </p>
           </Reveal>
-          
+
           <Reveal delay={0.2}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="w-full sm:w-auto">
@@ -61,26 +56,39 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Hero Mockup (Desktop + Mobile overlay concept) */}
+          {/* Clean Value Proposition Grid - Replaces messy mockups */}
           <Reveal delay={0.4}>
-            <div className="mt-16 relative max-w-5xl mx-auto flex justify-center items-end">
-              {/* Desktop Frame */}
-              <div className="w-[90%] md:w-[85%] rounded-t-frame border border-b-0 border-border-color bg-white shadow-card overflow-hidden relative z-10">
-                <div className="h-8 bg-cloud border-b border-border-color flex items-center px-4">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-border-color" />
-                    <div className="w-3 h-3 rounded-full bg-border-color" />
-                    <div className="w-3 h-3 rounded-full bg-border-color" />
-                  </div>
+            <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              <div className="bg-white border border-border-color rounded-card p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-full bg-lift-blue/10 flex items-center justify-center mb-4 text-lift-blue">
+                  <Zap className="w-5 h-5" />
                 </div>
-                <div className="relative aspect-[16/10] bg-cloud w-full">
-                  <img src="https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2400&auto=format&fit=crop" alt="Elite Edge Landscape Desktop Mockup" className="w-full h-full object-cover object-top" />
-                </div>
+                <h3 className="text-lg font-bold text-lift-navy mb-2">Premium Designs</h3>
+                <p className="text-sm text-slate-text leading-relaxed">High-end aesthetics that build instant authority for local brands.</p>
               </div>
-              
-              {/* Mobile Frame floating */}
-              <div className="w-[30%] md:w-[22%] absolute bottom-[-5%] right-[2%] md:right-[5%] z-20 rounded-[24px] md:rounded-[32px] border-[6px] md:border-[8px] border-lift-navy bg-white shadow-2xl overflow-hidden aspect-[9/19]">
-                  <img src="https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=800&auto=format&fit=crop" alt="Elite Edge Landscape Mobile Mockup" className="w-full h-full object-cover object-center" />
+
+              <div className="bg-white border border-border-color rounded-card p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center mb-4 text-success">
+                  <BarChart3 className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-lift-navy mb-2">Conversion Ready</h3>
+                <p className="text-sm text-slate-text leading-relaxed">Strategic layouts built to turn casual visitors into booked calls.</p>
+              </div>
+
+              <div className="bg-white border border-border-color rounded-card p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center mb-4 text-orange-500">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-lift-navy mb-2">Ongoing Support</h3>
+                <p className="text-sm text-slate-text leading-relaxed">Monthly updates and technical care included—never out of date.</p>
+              </div>
+
+              <div className="bg-white border border-border-color rounded-card p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center mb-4 text-purple-500">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-lift-navy mb-2">Local SEO Mastery</h3>
+                <p className="text-sm text-slate-text leading-relaxed">Optimized from day one to dominate the Google search rankings.</p>
               </div>
             </div>
           </Reveal>
@@ -119,7 +127,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-sans font-bold text-lift-navy mb-4">Why most local websites fail to get customers</h2>
             <p className="text-slate-text text-lg max-w-2xl mx-auto">Most local business websites act as pure digital brochures that are hard to read, look terrible on mobile, and are impossible to update.</p>
           </div>
-          
+
           <RevealList className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card hoverable className="border-border-color shadow-sm">
               <CardHeader>
@@ -160,9 +168,9 @@ export default function Home() {
           </div>
 
           <RevealList className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 pl-0">
-            {/* Project 1 */}
+            {/* Project 1: Oak & Stone */}
             <div className="group cursor-pointer">
-              <div className="mb-6 rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out group-hover:shadow-card group-hover:-translate-y-1">
+              <Link href="https://oak-and-stone.vercel.app/" target="_blank" rel="noopener noreferrer" className="block mb-6 rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out hover:shadow-card hover:-translate-y-1">
                 <div className="h-8 border-b border-border-color flex items-center px-4 bg-white">
                   <div className="flex space-x-2">
                      <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
@@ -171,20 +179,20 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="aspect-video relative w-full overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1581094363628-8da22d106f23?q=80&w=800&auto=format&fit=crop" alt="Local Plumber Mockup" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src="/images/Screenshot 2026-04-05 at 4.32.44 PM.png" alt="Oak & Stone Kitchen & Bath" className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" />
                 </div>
-              </div>
+              </Link>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <Badge>Concept Build</Badge>
-                <span className="text-sm font-semibold text-lift-blue">Local Plumber</span>
+                <Badge>Authority Build</Badge>
+                <span className="text-sm font-semibold text-lift-blue">Kitchen & Bath</span>
               </div>
-              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Pipeline Pros Redesign</h3>
-              <p className="text-slate-text text-sm">Improved mobile usability, added clear click-to-call headers, and built out dedicated service pages.</p>
+              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Oak & Stone</h3>
+              <p className="text-slate-text text-sm">A luxury remodeling studio website built with complex animations and authority-tier SEO structure.</p>
             </div>
 
-            {/* Project 2 */}
+            {/* Project 2: Brandywine */}
              <div className="group cursor-pointer">
-              <div className="mb-6 rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out group-hover:shadow-card group-hover:-translate-y-1">
+              <Link href="https://brandywine-landscaping.vercel.app/" target="_blank" rel="noopener noreferrer" className="mb-6 block rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out hover:shadow-card hover:-translate-y-1">
                 <div className="h-8 border-b border-border-color flex items-center px-4 bg-white">
                   <div className="flex space-x-2">
                      <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
@@ -193,37 +201,37 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="aspect-video relative w-full overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop" alt="Dentist Mockup" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src="/images/Screenshot 2026-04-05 at 4.33.09 PM.png" alt="Brandywine Landscaping & Hardscaping" className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" />
                 </div>
-              </div>
+              </Link>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <Badge>Concept Build</Badge>
-                <span className="text-sm font-semibold text-lift-blue">Family Dentist</span>
-              </div>
-              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Sunny Smiles Dental</h3>
-              <p className="text-slate-text text-sm">Added an integrated booking calendar, patient reviews section, and professional team bios.</p>
-            </div>
-
-            {/* Project 3 */}
-             <div className="group cursor-pointer">
-              <div className="mb-6 rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out group-hover:shadow-card group-hover:-translate-y-1">
-                <div className="h-8 border-b border-border-color flex items-center px-4 bg-white">
-                  <div className="flex space-x-2">
-                     <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
-                     <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
-                     <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
-                  </div>
-                </div>
-                <div className="aspect-video relative w-full overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=800&auto=format&fit=crop" alt="Landscaping Mockup" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <Badge>Concept Build</Badge>
+                <Badge>Growth Build</Badge>
                 <span className="text-sm font-semibold text-lift-blue">Landscaping</span>
               </div>
-              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Elite Edge Landscape</h3>
-              <p className="text-slate-text text-sm">Fixed slow image loading and completely restructured the site for local SEO service areas.</p>
+              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Brandywine</h3>
+              <p className="text-slate-text text-sm">Multi-page landscaping project highlighting service depth and clear mobile calls-to-action.</p>
+            </div>
+
+            {/* Project 3: Shine & Shield */}
+             <div className="group cursor-pointer">
+              <Link href="https://demo-shine-and-shield.vercel.app/" target="_blank" rel="noopener noreferrer" className="mb-6 block rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out hover:shadow-card hover:-translate-y-1">
+                <div className="h-8 border-b border-border-color flex items-center px-4 bg-white">
+                  <div className="flex space-x-2">
+                     <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
+                     <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
+                     <div className="w-2.5 h-2.5 rounded-full bg-border-color" />
+                  </div>
+                </div>
+                <div className="aspect-video relative w-full overflow-hidden">
+                  <img src="/images/Screenshot 2026-04-05 at 4.34.04 PM.png" alt="Shine & Shield Mobile Detailing" className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" />
+                </div>
+              </Link>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <Badge>Launch Build</Badge>
+                <span className="text-sm font-semibold text-lift-blue">Auto Detailing</span>
+              </div>
+              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Shine & Shield</h3>
+              <p className="text-slate-text text-sm">Clean, high-performance landing page build for a premium mobile auto detailing provider.</p>
             </div>
           </RevealList>
         </div>
@@ -232,31 +240,31 @@ export default function Home() {
       {/* 8. Process Section */}
       <section className="py-20 md:py-24 bg-lift-navy text-white text-center sm:text-left">
         <div className="container mx-auto px-4 max-w-[1200px]">
-           <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <Badge className="mb-4 bg-white/10 text-cloud border-none">How It Works</Badge>
             <h2 className="text-3xl md:text-5xl font-sans font-bold text-white mb-4">A simple, transparent process</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             <div className="absolute top-8 left-0 w-full h-px bg-white/20 hidden lg:block" />
-            
+
             <Reveal delay={0.0} className="relative z-10">
               <div className="w-16 h-16 rounded-full bg-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6 shadow-light">1</div>
               <h3 className="text-xl font-sans font-bold mb-3">Review & Planning</h3>
               <p className="text-cloud/80 text-sm">We review your current site or goals, establish a clear sitemap, and gather the necessary assets.</p>
             </Reveal>
             <Reveal delay={0.1} className="relative z-10 pt-4 md:pt-0">
-               <div className="w-16 h-16 rounded-full bg-lift-navy border-2 border-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6">2</div>
+              <div className="w-16 h-16 rounded-full bg-lift-navy border-2 border-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6">2</div>
               <h3 className="text-xl font-sans font-bold mb-3">Design & Build</h3>
               <p className="text-cloud/80 text-sm">We design and build the site simultaneously, focusing on mobile responsiveness and clear calls to action.</p>
             </Reveal>
             <Reveal delay={0.2} className="relative z-10 pt-4 md:pt-0">
-               <div className="w-16 h-16 rounded-full bg-lift-navy border-2 border-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6">3</div>
+              <div className="w-16 h-16 rounded-full bg-lift-navy border-2 border-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6">3</div>
               <h3 className="text-xl font-sans font-bold mb-3">Revisions & Launch</h3>
               <p className="text-cloud/80 text-sm">You review the site. We handle any revisions, attach your domain, and make it live for the world.</p>
             </Reveal>
             <Reveal delay={0.3} className="relative z-10 pt-4 md:pt-0">
-               <div className="w-16 h-16 rounded-full bg-lift-navy border-2 border-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6">4</div>
+              <div className="w-16 h-16 rounded-full bg-lift-navy border-2 border-lift-blue flex items-center justify-center font-sans font-bold text-2xl mx-auto sm:mx-0 mb-6">4</div>
               <h3 className="text-xl font-sans font-bold mb-3">Ongoing Updates</h3>
               <p className="text-cloud/80 text-sm">We host, secure, and maintain the site, while handling your monthly content updates.</p>
             </Reveal>
@@ -322,13 +330,13 @@ export default function Home() {
                   </ul>
                 </div>
                 <Button asChild className="w-full">
-                   <Link href="/contact?plan=growth">Get Started</Link>
+                  <Link href="/contact?plan=growth">Get Started</Link>
                 </Button>
               </Card>
             </Reveal>
 
             <Reveal delay={0.2} className="h-full">
-               <Card hoverable className="h-full flex flex-col justify-between p-8 border-border-color bg-white">
+              <Card hoverable className="h-full flex flex-col justify-between p-8 border-border-color bg-white">
                 <div>
                   <h3 className="text-2xl font-bold font-sans text-lift-navy">Authority</h3>
                   <p className="text-sm text-slate-text mt-2 mb-6">For a stronger long-term SEO and local credibility play.</p>
@@ -360,27 +368,27 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-[800px]">
           <Reveal>
-             <Card className="bg-soft-blue border-none shadow-none p-8 md:p-12 text-center rounded-[24px]">
-                <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 rounded-full bg-white border border-border-color flex items-center justify-center shadow-sm">
-                    <Shield className="w-8 h-8 text-lift-blue" />
-                  </div>
+            <Card className="bg-soft-blue border-none shadow-none p-8 md:p-12 text-center rounded-[24px]">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-white border border-border-color flex items-center justify-center shadow-sm">
+                  <Shield className="w-8 h-8 text-lift-blue" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-sans font-bold text-lift-navy mb-4">Our Guarantee</h3>
-                <p className="text-base md:text-lg text-slate-text font-medium leading-relaxed mb-6">
-                  We are a student-founded studio that outworks the massive, expensive agencies. You will always know what we are doing, you will never be locked out of your own domain, and we won't treat your business like just another ticket number.
-                </p>
-                <div className="text-sm font-bold text-lift-navy uppercase tracking-widest">
-                  Kunj & Aryan — Founders, LocalLift
-                </div>
-             </Card>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-sans font-bold text-lift-navy mb-4">Our Guarantee</h3>
+              <p className="text-base md:text-lg text-slate-text font-medium leading-relaxed mb-6">
+                We are a student-founded studio that outworks the massive, expensive agencies. You will always know what we are doing, you will never be locked out of your own domain, and we won't treat your business like just another ticket number.
+              </p>
+              <div className="text-sm font-bold text-lift-navy uppercase tracking-widest">
+                Kunj & Aryan — Founders, LocalLift
+              </div>
+            </Card>
           </Reveal>
         </div>
       </section>
 
       {/* 12. FAQ */}
       <section className="py-20 md:py-24 bg-cloud border-t border-border-color">
-         <div className="container mx-auto px-4 max-w-[800px]">
+        <div className="container mx-auto px-4 max-w-[800px]">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-5xl font-sans font-bold text-lift-navy mb-4">Frequently asked questions</h2>
           </div>
@@ -420,7 +428,7 @@ export default function Home() {
             <p className="text-slate-text text-lg mb-10">We'll give you honest feedback. We'll tell you if your current site is already working perfectly.</p>
             <div className="flex flex-col items-center">
               <Button asChild size="lg" className="w-full sm:w-auto mb-4">
-                 <Link href="/free-review">Get a Free Website Review</Link>
+                <Link href="/free-review">Get a Free Website Review</Link>
               </Button>
               <span className="text-sm font-medium text-slate-text flex items-center justify-center gap-1.5 whitespace-nowrap"><Shield className="w-4 h-4 text-lift-blue shrink-0" /> No pressure. We don't do hard sales.</span>
             </div>

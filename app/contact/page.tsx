@@ -13,13 +13,8 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const planName = searchParams.get('plan');
   
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real implementation, you would post this to an API route or form service here.
-    setIsSubmitted(true);
-  };
+  // Check if we just redirected back from formsubmit
+  const isSubmitted = searchParams.get('submitted') === 'true';
 
   if (isSubmitted) {
     return (
@@ -39,41 +34,82 @@ function ContactForm() {
   }
 
   return (
-    <Card className="p-6 md:p-8 border-border-color shadow-card bg-white">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <Card className="p-6 md:p-8 border-border-color shadow-card bg-white relative">
+      <form action="https://formsubmit.co/localliftstudio@gmail.com" method="POST" className="space-y-6">
         
+        {/* Formsubmit Settings */}
+        {/* Replace the URL below with your actual deployed domain once you launch */}
+        <input type="hidden" name="_next" value="http://localhost:3000/contact?submitted=true" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_subject" value="New Website Inquiry" />
+
         {planName && (
           <div className="bg-soft-blue p-4 rounded-[12px] flex items-center justify-between border border-border-color/50 mb-2">
             <span className="text-sm font-semibold text-lift-navy">Selected package:</span>
             <Badge className="bg-lift-blue text-white capitalize">{planName} Plan</Badge>
+            <input type="hidden" name="selected_plan" value={planName} />
           </div>
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-semibold text-lift-navy">Full Name <span className="text-error">*</span></label>
-            <input id="name" type="text" className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" placeholder="John Doe" required />
+            <input 
+              id="name" 
+              name="name"
+              type="text" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              placeholder="John Doe" 
+              required 
+            />
           </div>
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-semibold text-lift-navy">Email Address <span className="text-error">*</span></label>
-            <input id="email" type="email" className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" placeholder="john@company.com" required />
+            <input 
+              id="email" 
+              name="email"
+              type="email" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              placeholder="john@company.com" 
+              required 
+            />
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label htmlFor="business" className="text-sm font-semibold text-lift-navy">Business Name <span className="text-error">*</span></label>
-            <input id="business" type="text" className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" placeholder="Acme Services" required />
+            <input 
+              id="business" 
+              name="business_name"
+              type="text" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              placeholder="Acme Services" 
+              required 
+            />
           </div>
           <div className="space-y-2">
             <label htmlFor="url" className="text-sm font-semibold text-lift-navy">Current Website URL</label>
-            <input id="url" type="url" className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" placeholder="https://example.com" />
+            <input 
+              id="url" 
+              name="website_url"
+              type="url" 
+              className="w-full h-12 rounded-input border border-border-color bg-white px-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all" 
+              placeholder="https://example.com" 
+            />
           </div>
         </div>
 
         <div className="space-y-2">
           <label htmlFor="help" className="text-sm font-semibold text-lift-navy">What do you need help with? <span className="text-error">*</span></label>
-          <textarea id="help" rows={4} className="w-full rounded-[12px] border border-border-color bg-white p-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all resize-none" placeholder="Please describe your current challenges or goals quickly..." required />
+          <textarea 
+            id="help" 
+            name="message"
+            rows={4} 
+            className="w-full rounded-[12px] border border-border-color bg-white p-4 text-sm font-body text-lift-navy placeholder:text-muted-slate focus:outline-none focus:ring-2 focus:ring-lift-blue focus:border-transparent transition-all resize-none" 
+            placeholder="Please describe your current challenges or goals quickly..." 
+            required 
+          />
         </div>
 
         <Button type="submit" size="lg" className="w-full md:w-auto mt-2">
@@ -146,3 +182,4 @@ export default function Contact() {
     </div>
   );
 }
+
