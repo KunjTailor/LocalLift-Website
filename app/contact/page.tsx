@@ -164,7 +164,7 @@ export default function Contact() {
                 <h4 className="font-sans font-bold text-lift-navy mb-1">Book a call</h4>
                 <p className="text-slate-text text-sm mb-4 font-medium">Schedule a 15-minute intro call directly with the founders.</p>
                 <Button variant="outline" asChild className="w-full text-xs h-9">
-                  <Link href="https://calendly.com" target="_blank" rel="noopener noreferrer">View Calendar</Link>
+                  <Link href="https://calendly.com/localliftstudio/quick-intro-call" target="_blank" rel="noopener noreferrer">View Calendar</Link>
                 </Button>
               </Card>
            </RevealList>

@@ -94,7 +94,7 @@ export default function FreeReview() {
                 </Link>
               </Button>
               <Button size="lg" asChild variant="secondary" className="w-full sm:w-auto border-transparent text-lift-navy font-bold">
-                <Link href="https://calendly.com" target="_blank" rel="noopener noreferrer">
+                <Link href="https://calendly.com/localliftstudio/quick-intro-call" target="_blank" rel="noopener noreferrer">
                   <Calendar className="w-4 h-4 mr-2" />
                   Book a Quick Call Instead
                 </Link>
