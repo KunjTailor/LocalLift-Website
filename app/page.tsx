@@ -208,7 +208,7 @@ export default function Home() {
                 <Badge>Growth Build</Badge>
                 <span className="text-sm font-semibold text-lift-blue">Landscaping</span>
               </div>
-              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Brandywine</h3>
+              <h3 className="text-xl md:text-2xl font-sans font-bold text-lift-navy mb-2 group-hover:text-lift-blue transition-colors">Brandywine Landscaping & Hardscaping</h3>
               <p className="text-slate-text text-sm">Multi-page landscaping project highlighting service depth and clear mobile calls-to-action.</p>
             </div>
 
