@@ -24,7 +24,7 @@ function ContactForm() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/localliftstudio@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/team@localliftstudios.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ export default function Contact() {
                   <Mail className="w-5 h-5" />
                 </div>
                 <h4 className="font-sans font-bold text-lift-navy mb-1">Email us</h4>
-                <a href="mailto:localliftstudio@gmail.com" className="text-lift-blue text-sm hover:underline font-semibold block transition-all">localliftstudio@gmail.com</a>
+                <a href="mailto:team@localliftstudios.com" className="text-lift-blue text-sm hover:underline font-semibold block transition-all">team@localliftstudios.com</a>
               </Card>
 
               <Card className="p-6 border-border-color shadow-sm bg-white">
