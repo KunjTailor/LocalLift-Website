@@ -190,7 +190,7 @@ export default function Home() {
               <p className="text-slate-text text-sm">A luxury remodeling studio website built with complex animations and authority-tier SEO structure.</p>
             </div>
 
-            {/* Project 2: Brandywine */}
+            {/* Project 2: Brandywine Landscaping & Hardscaping */}
              <div className="group cursor-pointer">
               <Link href="https://brandywine-landscaping.vercel.app/" target="_blank" rel="noopener noreferrer" className="mb-6 block rounded-card border border-border-color bg-cloud overflow-hidden transition-all duration-200 ease-out hover:shadow-card hover:-translate-y-1">
                 <div className="h-8 border-b border-border-color flex items-center px-4 bg-white">

@@ -19,7 +19,7 @@ const projects = [
     link: 'https://oak-and-stone.vercel.app/',
   },
   {
-    title: 'Brandywine',
+    title: 'Brandywine Landscaping & Hardscaping',
     businessType: 'Landscaping',
     type: 'Growth Build',
     oldProblem: 'Inconsistent branding and a cluttered mobile experience made it difficult for homeowners to find specific service details or request quotes.',

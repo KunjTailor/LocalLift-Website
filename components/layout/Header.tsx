@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
@@ -18,25 +18,43 @@ const links = [
 ];
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const pathname = usePathname();
   const menuRef = React.useRef<HTMLDivElement>(null);
+
+  const { scrollY } = useScroll();
+  
+  // Configuration for smooth scroll-linked values
+  const springConfig = { stiffness: 100, damping: 20, mass: 0.1, bounce: 0 };
+  
+  // 1. Header Background & Blur
+  const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.95]);
+  const smoothBgOpacity = useSpring(bgOpacity, springConfig);
+  const headerBg = useTransform(smoothBgOpacity, (v) => `rgba(255, 255, 255, ${v})`);
+  
+  const blurValue = useTransform(scrollY, [0, 80], [0, 12]);
+  const smoothBlur = useSpring(blurValue, springConfig);
+  const headerBlur = useTransform(smoothBlur, (v) => `blur(${v}px)`);
+
+  const borderOpacity = useTransform(scrollY, [60, 80], [0, 1]);
+  const smoothBorderOpacity = useSpring(borderOpacity, springConfig);
+  const borderColor = useTransform(smoothBorderOpacity, (v) => `rgba(226, 232, 240, ${v})`);
+
+  // 2. Announcement Bar Height & Alpha
+  const announcementHeight = useTransform(scrollY, [0, 80], [40, 0]); // Approx 40px height
+  const smoothAnnHeight = useSpring(announcementHeight, springConfig);
+  
+  const announcementAlpha = useTransform(scrollY, [0, 40], [1, 0]);
+  const smoothAnnAlpha = useSpring(announcementAlpha, springConfig);
+
+  // 3. Container Padding
+  const padY = useTransform(scrollY, [0, 80], [20, 12]); // py-5 (20px) to py-3 (12px)
+  const smoothPadY = useSpring(padY, springConfig);
 
   // Close mobile menu when route changes
   React.useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
-
-  // Handle Scroll
-  React.useEffect(() => {
-    const handleScroll = () => {
-      // Trigger scrolled state a bit later to give the announcement bar "breathing room"
-      setIsScrolled(window.scrollY > 40);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Click outside to close mobile menu
   React.useEffect(() => {
@@ -55,34 +73,31 @@ export function Header() {
 
   return (
     <>
-      <header
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
-          isScrolled
-            ? 'bg-white/90 backdrop-blur-md border-b border-border-color shadow-sm'
-            : 'bg-transparent'
-        )}
+      <motion.header
+        style={{
+          backgroundColor: headerBg,
+          backdropFilter: headerBlur,
+          borderBottomColor: borderColor,
+        }}
+        className="fixed top-0 left-0 right-0 z-50 border-b flex flex-col"
       >
-        {/* 1. Announcement Bar (Integrated) */}
-        <AnimatePresence mode="wait">
-          {!isScrolled && (
-            <motion.div 
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="bg-lift-navy text-white py-2.5 text-center text-sm font-body font-medium flex items-center justify-center overflow-hidden"
-            >
-              <span>Transparent pricing. Ongoing support. No agency fluff.</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* 1. Announcement Bar (Integrated & Scroll-Linked) */}
+        <motion.div 
+          style={{ 
+            height: smoothAnnHeight,
+            opacity: smoothAnnAlpha,
+          }}
+          className="bg-lift-navy text-white text-center text-sm font-body font-medium flex items-center justify-center overflow-hidden whitespace-nowrap"
+        >
+          <span>Transparent pricing. Ongoing support. No agency fluff.</span>
+        </motion.div>
 
-        <div 
-          className={cn(
-            "container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1200px] flex items-center justify-between relative transition-all duration-300",
-            isScrolled ? "py-3" : "py-5"
-          )} 
+        <motion.div 
+          style={{
+            paddingTop: smoothPadY,
+            paddingBottom: smoothPadY
+          }}
+          className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1200px] flex items-center justify-between relative" 
           ref={menuRef}
         >
           <Link href="/" className="flex items-center space-x-2 z-50">
@@ -159,8 +174,8 @@ export function Header() {
             )}
           </AnimatePresence>
 
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
     </>
   );
 }
