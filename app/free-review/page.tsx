@@ -28,6 +28,7 @@ export default function FreeReview() {
 
         {/* Video Section */}
         <Reveal delay={0.1}>
+          {/*
           <div className="bg-white/80 backdrop-blur-sm rounded-frame p-2 shadow-light border border-border-color mb-16 md:mb-24 relative group cursor-pointer max-w-3xl mx-auto">
             <div className="aspect-video bg-muted-slate/20 rounded-[16px] md:rounded-[20px] relative overflow-hidden flex items-center justify-center">
               <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=2400&fit=crop" alt="Loom Audit Thumbnail placeholder" className="absolute inset-0 w-full h-full object-cover opacity-80" />
@@ -37,6 +38,17 @@ export default function FreeReview() {
               </div>
               <div className="absolute bottom-4 left-4 z-20">
                 <Badge className="bg-lift-navy/80 backdrop-blur-md text-white border-transparent py-1.5">Short Intro from Kunj & Aryan</Badge>
+              </div>
+            </div>
+          </div>
+          */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-frame p-2 shadow-light border border-border-color mb-16 md:mb-24 relative group max-w-3xl mx-auto">
+            <div className="aspect-video bg-muted-slate/20 rounded-[16px] md:rounded-[20px] relative overflow-hidden flex items-end justify-start p-6 md:p-8">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2400&fit=crop" alt="Website Audit Setup" className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-lift-navy/80 via-lift-navy/20 to-transparent z-10" />
+              <div className="relative z-20">
+                <Badge className="bg-white text-lift-navy border-transparent py-1.5 font-bold mb-3">Comprehensive Analysis</Badge>
+                <h3 className="text-white text-2xl md:text-3xl font-bold font-sans">We review your site's performance</h3>
               </div>
             </div>
           </div>
@@ -60,6 +72,7 @@ export default function FreeReview() {
         {/* See a sample audit */}
         <div className="mb-24 md:mb-32">
           <Reveal delay={0.3}>
+            {/*
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-sans font-bold text-lift-navy mb-2">See a sample video review</h2>
               <p className="text-slate-text text-base mb-8">This is exactly what you can expect us to record and send to you.</p>
@@ -71,6 +84,18 @@ export default function FreeReview() {
                    <div className="w-12 h-12 rounded-full bg-white text-lift-navy flex items-center justify-center shadow z-20 group-hover:scale-110 transition-transform">
                      <Play className="w-5 h-5 ml-1" />
                   </div>
+                </div>
+              </div>
+            </div>
+            */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-sans font-bold text-lift-navy mb-2">Actionable insights for growth</h2>
+              <p className="text-slate-text text-base mb-8">Discover exactly what's holding your website back from converting more visitors.</p>
+              
+              <div className="bg-white rounded-frame p-2 shadow-sm border border-border-color max-w-[600px] mx-auto relative group">
+                <div className="aspect-[16/9] bg-muted-slate/20 rounded-card relative flex items-center justify-center overflow-hidden">
+                   <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&fit=crop" alt="Data and analytics" className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-lift-navy/40 to-transparent z-10" />
                 </div>
               </div>
             </div>
