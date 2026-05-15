@@ -32,6 +32,32 @@
   --spacing-section-dt-y: 104px;
   --spacing-section-tb-y: 80px;
   --spacing-section-mb-y: 56px;
+
+  --animate-marquee: marquee linear infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-float: float 8s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+}
+
+@utility text-shine {
+  background: linear-gradient(110deg, var(--color-lift-navy) 30%, #4b6bff 50%, var(--color-lift-navy) 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3.5s linear infinite;
 }
 
 @layer base {
@@ -46,6 +72,16 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
     color: var(--color-lift-navy);
+  }
+
+  /* Headings inherit color when wrapped in a section that opts into white text */
+  .dark-surface h1,
+  .dark-surface h2,
+  .dark-surface h3,
+  .dark-surface h4,
+  .dark-surface h5,
+  .dark-surface h6 {
+    color: inherit;
   }
   
   @media (prefers-reduced-motion: reduce) {

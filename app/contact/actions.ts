@@ -4,7 +4,7 @@ export async function submitContactForm(formData: FormData) {
   const data = Object.fromEntries(formData.entries());
   
   // We'll use the Formspree endpoint that matches your email
-  const response = await fetch("https://formspree.io/f/localliftstudio@gmail.com", {
+  const response = await fetch("https://formspree.io/f/team@localliftstudios.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

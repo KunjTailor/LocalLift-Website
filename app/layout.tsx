@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Manrope } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollProgress } from '@/components/animations/ScrollProgress';
 import './globals.css';
 
 const inter = Inter({
@@ -33,6 +34,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-body bg-background text-foreground">
+        <ScrollProgress />
         <Header />
         <main className="flex-1">
           {children}

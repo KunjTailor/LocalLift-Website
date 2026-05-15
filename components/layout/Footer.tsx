@@ -16,8 +16,8 @@ export function Footer() {
             </p>
             <div className="pt-2 flex flex-col space-y-1 text-sm text-cloud">
               <span>Downingtown, Pennsylvania</span>
-              <a href="mailto:localliftstudio@gmail.com" className="text-lift-blue hover:text-white transition-colors underline-offset-4 hover:underline">
-                localliftstudio@gmail.com
+              <a href="mailto:team@localliftstudios.com" className="text-lift-blue hover:text-white transition-colors underline-offset-4 hover:underline">
+                team@localliftstudios.com
               </a>
             </div>
           </div>
