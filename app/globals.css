@@ -35,10 +35,16 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    min-width: 320px;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -46,6 +52,24 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
     color: var(--color-lift-navy);
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--color-badge-blue);
+    color: var(--color-lift-navy);
+  }
+
+  [id] {
+    scroll-margin-top: 92px;
   }
   
   @media (prefers-reduced-motion: reduce) {
@@ -57,5 +81,23 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+@layer utilities {
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(29, 78, 216, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29, 78, 216, 0.055) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
+  }
+
+  .hero-grid-dark {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 92%);
   }
 }

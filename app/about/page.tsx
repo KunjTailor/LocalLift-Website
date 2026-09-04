@@ -1,93 +1,145 @@
-'use client';
-
-import * as React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { ArrowRight, MapPin, MessagesSquare, Target } from 'lucide-react';
 import { Reveal, RevealList } from '@/components/animations/Reveal';
+import { PageHero } from '@/components/sections/PageHero';
+import { SectionHeading } from '@/components/sections/SectionHeading';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { createPageMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site';
 
-export default function About() {
+export const metadata = createPageMetadata({
+  title: 'About LocalLift Studios',
+  description:
+    'Meet the student-founded LocalLift team in Downingtown, Pennsylvania. Work directly with the people designing and building your $500 website.',
+  path: '/about',
+});
+
+const founders = [
+  {
+    name: 'Kunj Tailor',
+    role: 'Co-Founder · Operations & Client Communication',
+    image: '/images/kunj-tailor.webp',
+    alt: 'Kunj Tailor, co-founder of LocalLift Studios',
+    description:
+      'Kunj coordinates projects and client communication, helping keep the scope, materials, and next steps clear from the first conversation through handoff.',
+  },
+  {
+    name: 'Aryan Mitra',
+    role: 'Co-Founder · Design & Development',
+    image: '/images/aryan-mitra.webp',
+    alt: 'Aryan Mitra, co-founder of LocalLift Studios',
+    description:
+      'Aryan designs and builds each website with an emphasis on clear structure, mobile usability, and a polished presentation suited to the business.',
+  },
+] as const;
+
+const workingPrinciples = [
+  {
+    icon: MessagesSquare,
+    title: 'Direct communication',
+    description: 'You speak with the people planning and building the website, not an account manager passing messages between departments.',
+  },
+  {
+    icon: Target,
+    title: 'Focused scope',
+    description: 'We concentrate on the core pages and inquiry paths a local service business needs, keeping the $500 standard build straightforward.',
+  },
+  {
+    icon: MapPin,
+    title: 'Local perspective',
+    description: 'We are based in Downingtown and build for local businesses there and beyond, with attention to how customers actually browse and call.',
+  },
+] as const;
+
+export default function AboutPage() {
   return (
-    <div className="bg-cloud min-h-screen pt-24 md:pt-32 pb-24 px-4">
-      <div className="container mx-auto max-w-[900px]">
-        {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <Reveal>
-            <Badge className="mb-4 bg-badge-blue text-lift-blue">About Us</Badge>
-            <h1 className="text-4xl md:text-5xl font-sans font-extrabold text-lift-navy mb-6 tracking-tight">
-              We build trust.
-            </h1>
-            <p className="text-lg md:text-xl text-slate-text max-w-2xl mx-auto font-body">
-              LocalLift is a web studio based in Downingtown, Pennsylvania, focused on helping local businesses look more credible online with clear, affordable websites and ongoing support.
-            </p>
-          </Reveal>
-        </div>
+    <div className="min-h-screen bg-cloud">
+      <PageHero
+        eyebrow="About LocalLift"
+        title={
+          <>
+            Small team. <span className="text-lift-blue">Direct communication.</span>
+          </>
+        }
+        description={`LocalLift is a student-founded web studio based in ${siteConfig.location}. We build focused, professional websites for local service businesses without requiring an ongoing LocalLift subscription.`}
+      >
+        <p className="font-sans text-sm font-bold tracking-[0.12em] text-lift-blue uppercase">
+          Based in Downingtown. Built for local businesses.
+        </p>
+      </PageHero>
 
-        {/* Founders */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-24">
-          <Reveal delay={0.1}>
-            <div className="flex flex-col items-center">
-              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-6 border-4 border-white shadow-card bg-muted-slate/20">
-                <img src="/images/kunj-tailor.png" alt="Kunj Tailor" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-2xl font-sans font-bold text-lift-navy mb-1">Kunj Tailor</h3>
-              <p className="text-lift-blue font-semibold text-sm mb-4 text-center">Co-Founder<br/>Operations & Client Relations</p>
-              <p className="text-center text-slate-text text-sm max-w-xs">
-                Handles financials, customer relations, and business operations. Kunj ensures that every project stays on track and you are communicated with clearly from day one.
-              </p>
-            </div>
-          </Reveal>
-          
-          <Reveal delay={0.2}>
-             <div className="flex flex-col items-center">
-              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-6 border-4 border-white shadow-card bg-muted-slate/20">
-                <img src="/images/aryan-mitra.png" alt="Aryan Mitra" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-2xl font-sans font-bold text-lift-navy mb-1">Aryan Mitra</h3>
-              <p className="text-lift-blue font-semibold text-sm mb-4 text-center">Co-Founder<br/>Technical Director & Design</p>
-              <p className="text-center text-slate-text text-sm max-w-xs">
-                Designs the websites and manages the technical deployment. Aryan focuses on fast-loading code, clean UI structures, and ensuring your site looks perfect on all unqiue mobile screens.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Values / Trust block */}
-        <div className="bg-white rounded-card shadow-card py-10 px-6 md:p-16 border border-border-color mb-16">
-          <Reveal>
-            <div className="flex items-center gap-3 mb-8">
-              <ShieldCheck className="w-8 h-8 text-lift-blue" />
-              <h2 className="text-2xl md:text-3xl font-sans font-bold text-lift-navy">Why local businesses trust us</h2>
-            </div>
-          </Reveal>
-          <RevealList className="space-y-8">
-            <div className="border-l-2 border-lift-blue pl-6">
-              <h4 className="text-lg font-bold font-sans text-lift-navy mb-2">Honest, student-founded hustle</h4>
-              <p className="text-slate-text text-sm">We don't have a giant agency overhead or hide behind fake corporate stock photos. You work directly with us, and we are accountable to the results we produce.</p>
-            </div>
-            <div className="border-l-2 border-lift-blue pl-6">
-              <h4 className="text-lg font-bold font-sans text-lift-navy mb-2">Simplicity wins</h4>
-              <p className="text-slate-text text-sm">Local business websites don't need highly animated 3D cubes. They need clear contact info, trust markers, and easy mobile navigation. We strip out the noise.</p>
-            </div>
-            <div className="border-l-2 border-lift-blue pl-6">
-              <h4 className="text-lg font-bold font-sans text-lift-navy mb-2">Fast communication</h4>
-              <p className="text-slate-text text-sm">We know how frustrating it is when web designers disappear. We promise replies to your direct support requests within 1 business day.</p>
-            </div>
+      <section className="border-b border-border-color bg-white px-4 py-20 md:py-24">
+        <div className="mx-auto max-w-[1000px]">
+          <SectionHeading
+            eyebrow="Founder-Led"
+            title="Meet the people building your website"
+            description="LocalLift stays intentionally small so every project gets direct attention from the founders responsible for the work."
+          />
+          <RevealList className="mt-12 grid gap-8 md:grid-cols-2">
+            {founders.map((founder) => (
+              <Card key={founder.name} className="h-full border-border-color bg-cloud p-7 text-center shadow-light md:p-9">
+                <div className="relative mx-auto mb-6 h-40 w-40 overflow-hidden rounded-full border-4 border-white bg-slate-100 shadow-card md:h-48 md:w-48">
+                  <Image
+                    src={founder.image}
+                    alt={founder.alt}
+                    fill
+                    sizes="(max-width: 767px) 160px, 192px"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-lift-navy">{founder.name}</h3>
+                <p className="mt-2 text-sm font-bold text-lift-blue">{founder.role}</p>
+                <p className="mx-auto mt-5 max-w-sm text-sm leading-6 text-slate-text">{founder.description}</p>
+              </Card>
+            ))}
           </RevealList>
         </div>
+      </section>
 
-        {/* Final CTA */}
-        <div className="text-center border-t border-border-color pt-16">
-          <Reveal>
-             <h2 className="text-2xl md:text-3xl font-sans font-bold text-lift-navy mb-6">Let's see if we're a good fit.</h2>
-             <Button asChild size="lg" className="bg-lift-blue text-white hover:bg-lift-blue-hover w-full sm:w-auto">
-               <Link href="/contact">Get in Touch <ArrowRight className="ml-2 w-4 h-4" /></Link>
-             </Button>
-          </Reveal>
+      <section className="px-4 py-20 md:py-24">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="How We Work"
+            title="Professional work without layers of agency process"
+            description="The student-founded story matters because it shapes how we work: closely, carefully, and with a direct line between the business owner and the builders."
+          />
+          <RevealList className="mt-12 grid gap-6 md:grid-cols-3">
+            {workingPrinciples.map((principle) => (
+              <Card key={principle.title} className="h-full border-border-color bg-white p-6 shadow-light md:p-7">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-soft-blue text-lift-blue">
+                  <principle.icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-xl font-bold text-lift-navy">{principle.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-text">{principle.description}</p>
+              </Card>
+            ))}
+          </RevealList>
         </div>
+      </section>
 
-      </div>
+      <section className="bg-lift-navy px-4 py-16 text-center text-white md:py-20">
+        <Reveal>
+          <div className="mx-auto max-w-[760px]">
+            <h2 className="text-3xl font-bold text-white md:text-4xl">Tell us what your business needs online</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-cloud/80">
+              We will give you a straightforward view of what is worth improving and whether the standard website build is a fit.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="/free-review">
+                  Get a Free Website Review
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+                <Link href="/contact#contact-form">Start Your Website</Link>
+              </Button>
+            </div>
+          </div>
+        </Reveal>
+      </section>
     </div>
   );
 }

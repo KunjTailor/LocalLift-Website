@@ -1,98 +1,149 @@
-'use client';
-
-import * as React from 'react';
 import Link from 'next/link';
-import { ArrowDown, MessageSquare, Paintbrush, Rocket, Wrench } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
+import { ArrowRight, CircleCheck, FolderInput, ReceiptText } from 'lucide-react';
 import { Reveal, RevealList } from '@/components/animations/Reveal';
+import { PageHero } from '@/components/sections/PageHero';
+import { ProcessSteps } from '@/components/sections/ProcessSteps';
+import { SectionHeading } from '@/components/sections/SectionHeading';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { createPageMetadata } from '@/lib/metadata';
 
-const steps = [
-  {
-    icon: MessageSquare,
-    title: "1. Review & Planning",
-    timeline: "Week 1",
-    desc: "We start with a zero-pressure review. You fill out a simple onboarding form. We'll map out your site's structure, gather your logo and photos, and plan the exact pages you need to rank locally."
-  },
-  {
-    icon: Paintbrush,
-    title: "2. Design & Build",
-    timeline: "Weeks 2-3",
-    desc: "We design a clean, responsive prototype. Instead of sending confusing PDFs, we send you a working link so you can see exactly how it feels on your phone and desktop."
-  },
-  {
-    icon: Rocket,
-    title: "3. Revisions & Launch",
-    timeline: "Week 4",
-    desc: "You review the site. We handle any revisions, attach your custom domain, optimize your performance tags, and make the website live for the world."
-  },
-  {
-    icon: Wrench,
-    title: "4. Ongoing Support",
-    timeline: "Monthly",
-    desc: "We don't abandon you after launch. We handle the hosting, software updates, security, and your monthly content edits so you can just run your business."
-  }
-];
+export const metadata = createPageMetadata({
+  title: 'How It Works | LocalLift Studios',
+  description:
+    'See the four-step LocalLift website process: free review, build, two revision rounds, then launch and handoff after approval and final payment.',
+  path: '/how-it-works',
+});
 
-export default function HowItWorks() {
+const handoffDetails = [
+  {
+    icon: CircleCheck,
+    title: 'Approval comes first',
+    description: 'You see the finished website and use the two included reasonable revision rounds before final handoff.',
+  },
+  {
+    icon: FolderInput,
+    title: 'You receive control',
+    description: 'After final payment, we provide the website and agreed files or access according to the handoff method.',
+  },
+  {
+    icon: ReceiptText,
+    title: 'Third-party costs are yours',
+    description: 'You are responsible for domain, paid hosting, premium software, and other services selected for the site.',
+  },
+] as const;
+
+export default function HowItWorksPage() {
   return (
-    <div className="bg-white min-h-screen pt-32 pb-24">
-      <div className="container mx-auto px-4 max-w-[800px]">
-        {/* Header */}
-        <div className="text-center mb-20">
+    <div className="min-h-screen bg-white">
+      <PageHero
+        eyebrow="How It Works"
+        title={
+          <>
+            Four clear steps. <span className="text-lift-blue">Then the website is yours.</span>
+          </>
+        }
+        description="A focused process keeps the project understandable, gives you room to review the work, and ends with a clear launch and handoff."
+      >
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg" className="w-full sm:w-auto">
+            <Link href="/free-review">
+              Get a Free Website Review
+              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+            <Link href="/work">See Our Work</Link>
+          </Button>
+        </div>
+      </PageHero>
+
+      <section className="relative overflow-hidden bg-lift-navy px-4 py-20 text-white md:py-24" aria-labelledby="process-heading">
+        <div className="hero-grid-dark absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1200px]">
           <Reveal>
-             <Badge className="mb-4">Our Process</Badge>
-            <h1 className="text-4xl md:text-6xl font-sans font-extrabold text-lift-navy mb-6 tracking-tight">
-              Simple steps, no headaches
-            </h1>
-            <p className="text-lg md:text-xl text-slate-text max-w-xl mx-auto font-body">
-              We know you don't have time to manage a web project. We've structured our process to require very little of your time.
+            <div className="mx-auto mb-12 max-w-2xl text-center">
+              <p className="text-sm font-bold tracking-[0.16em] text-blue-300 uppercase">The Process</p>
+              <h2 id="process-heading" className="mt-3 text-3xl font-bold text-white md:text-5xl">
+                From review to Launch &amp; Handoff
+              </h2>
+              <p className="mt-5 text-base leading-7 text-cloud/75 md:text-lg">
+                The project has a clear finish line. After handoff, there is no required LocalLift subscription or recurring
+                LocalLift fee.
+              </p>
+            </div>
+          </Reveal>
+          <ProcessSteps detailed />
+        </div>
+      </section>
+
+      <section className="bg-cloud px-4 py-20 md:py-24">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="Before We Build"
+            title="What we need from you"
+            description="A focused build moves smoothly when we have accurate information and the materials that represent your business."
+          />
+          <Reveal>
+            <Card className="mx-auto mt-10 max-w-[900px] border-border-color bg-white p-7 shadow-card md:p-10">
+              <div className="grid gap-6 sm:grid-cols-2">
+                {[
+                  'Accurate business and contact information',
+                  'Your services and service-area details',
+                  'Logo and brand assets, if available',
+                  'Photos you have permission to use',
+                ].map((item) => (
+                  <p key={item} className="flex items-start gap-3 text-sm font-medium leading-6 text-lift-navy md:text-base">
+                    <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-success" aria-hidden="true" />
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </Card>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-y border-border-color bg-white px-4 py-20 md:py-24">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="After Launch"
+            title="You keep the website"
+            description="Once the project is approved, fully paid, and handed off, you control the site. LocalLift does not require an ongoing subscription."
+          />
+          <RevealList className="mt-12 grid gap-6 md:grid-cols-3">
+            {handoffDetails.map((detail) => (
+              <Card key={detail.title} className="h-full border-border-color bg-cloud p-6 shadow-light md:p-7">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-soft-blue text-lift-blue">
+                  <detail.icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-xl font-bold text-lift-navy">{detail.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-text">{detail.description}</p>
+              </Card>
+            ))}
+          </RevealList>
+          <Reveal>
+            <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-6 text-slate-text md:text-base">
+              You can maintain the site yourself, hire someone else, or contact us for separately quoted future work,
+              depending on availability.
             </p>
           </Reveal>
         </div>
+      </section>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line hidden on extremely small screens */}
-          <div className="absolute left-[38px] md:left-1/2 top-4 bottom-4 w-px bg-border-color hidden sm:block md:-translate-x-1/2" />
-          
-          <RevealList className="space-y-12">
-            {steps.map((step, idx) => (
-              <div key={idx} className={`relative flex flex-col sm:flex-row items-start ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''} gap-6 md:gap-12`}>
-                
-                {/* Center Icon */}
-                <div className="hidden sm:flex absolute left-[38px] md:left-1/2 -ml-[24px] top-6 w-12 h-12 rounded-full bg-cloud border-4 border-white text-lift-blue items-center justify-center shadow-sm z-10 transition-transform hover:scale-110">
-                  <step.icon className="w-5 h-5" />
-                </div>
-                
-                {/* Content */}
-                <Card className={`w-full sm:w-[calc(100%-80px)] md:w-[calc(50%-48px)] p-8 shadow-light hover:shadow-card hover:border-badge-blue transition-all duration-300 ${idx % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'}`}>
-                  <div className="flex justify-between items-start mb-4 gap-4">
-                    <h3 className="font-sans font-bold text-xl text-lift-navy">{step.title}</h3>
-                    <Badge className="bg-cloud text-slate-text shrink-0">{step.timeline}</Badge>
-                  </div>
-                  <p className="text-slate-text text-sm leading-relaxed">{step.desc}</p>
-                </Card>
-              </div>
-            ))}
-          </RevealList>
-        </div>
-
-        {/* Post-launch */}
-         <div className="mt-32 pt-20 border-t border-border-color text-center max-w-2xl mx-auto">
-            <Reveal>
-              <h2 className="text-3xl font-sans font-bold mb-4 text-lift-navy">What happens after launch?</h2>
-              <p className="text-slate-text text-lg mb-8">
-                Your monthly plan covers our ongoing support. If you need a new photo swapped, hours changed, or a quick testimonial added, just email us. We handle the tech so you don't have to.
-              </p>
-              <Button asChild size="lg">
-                <Link href="/pricing">View Plans & Pricing</Link>
-              </Button>
-            </Reveal>
-         </div>
-
-      </div>
+      <section className="bg-soft-blue px-4 py-16 text-center md:py-20">
+        <Reveal>
+          <div className="mx-auto max-w-[760px]">
+            <h2 className="text-3xl font-bold text-lift-navy md:text-4xl">Ready to begin with a clear first step?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-text">
+              We will review your current website if you have one and talk through what a focused new site would need.
+            </p>
+            <Button asChild size="lg" className="mt-8 w-full sm:w-auto">
+              <Link href="/free-review">Get a Free Website Review</Link>
+            </Button>
+          </div>
+        </Reveal>
+      </section>
     </div>
   );
 }
