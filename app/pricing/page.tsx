@@ -10,18 +10,18 @@ import { createPageMetadata } from '@/lib/metadata';
 import { websiteOffer } from '@/lib/site';
 
 export const metadata = createPageMetadata({
-  title: '$500 Website Build | LocalLift Studios',
+  title: 'The Complete Launch Package — $500 Flat | LocalLift Studios',
   description:
-    'One professional website for local businesses for a $500 one-time project fee. Up to five core pages, two revision rounds, launch, and handoff.',
+    'The Complete Launch Package: one professional website for local businesses for a flat $500. Up to five core pages, local SEO foundations, two revision rounds, launch, and handoff.',
   path: '/pricing',
 });
 
 const scopeDetails = [
   {
     icon: CircleDollarSign,
-    title: 'One focused project',
+    title: 'One flat fee',
     description:
-      'The standard $500 fee covers one professional website with up to five agreed core pages and the listed launch services.',
+      'The $500 covers the whole Complete Launch Package: one professional website with up to five agreed core pages and every launch service listed above.',
   },
   {
     icon: Boxes,
@@ -33,7 +33,7 @@ const scopeDetails = [
     icon: KeyRound,
     title: 'A real handoff',
     description:
-      'After approval and final payment, we provide the website and agreed access or files. There is no required LocalLift subscription.',
+      'After approval and final payment, we provide the finished website and the agreed access or files. From there it is yours to run.',
   },
 ] as const;
 
@@ -41,13 +41,13 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-cloud">
       <PageHero
-        eyebrow="One Website. One Price."
+        eyebrow="The Complete Launch Package"
         title={
           <>
-            A professional website. <span className="text-lift-blue">$500 one time.</span>
+            Your whole website. <span className="text-lift-blue">$500 flat.</span>
           </>
         }
-        description="A clear, professional website build for local service businesses—with no required monthly LocalLift fee and no confusing package tiers."
+        description="One package, one flat price, and one finished website that belongs to you. Everything the build needs is already in it."
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button asChild size="lg" className="w-full sm:w-auto">
@@ -67,11 +67,11 @@ export default function PricingPage() {
           <Reveal>
             <div className="mb-10 text-center">
               <h2 id="website-offer-heading" className="text-3xl font-bold tracking-tight text-lift-navy md:text-5xl">
-                Everything in the standard build
+                Everything in the Complete Launch Package
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-text md:text-lg">
                 The pages are chosen around your business and count toward the five-page limit. A common site includes Home,
-                Services, About, Projects, and Contact.
+                Services, About, Projects, and Contact. Nothing on this list is an upsell—it is all part of the $500.
               </p>
             </div>
           </Reveal>
@@ -84,7 +84,7 @@ export default function PricingPage() {
           <SectionHeading
             eyebrow="Built to Stay Simple"
             title="A clear scope protects the price"
-            description="LocalLift keeps the project focused on the core website a local business needs instead of building unnecessary complexity into every job."
+            description="Keeping the Complete Launch Package focused on the core website a local business actually needs is exactly what lets one flat price cover all of it."
           />
           <RevealList className="mt-12 grid gap-6 md:grid-cols-3">
             {scopeDetails.map((detail) => (
@@ -106,7 +106,7 @@ export default function PricingPage() {
             <SectionHeading
               eyebrow="Agency-Quality Basics"
               title="The essentials, without agency overhead"
-              description="Local businesses should not need a five-figure contract just to get a clean, credible website. We use a focused process, charge one straightforward project fee, and hand over the finished site."
+              description="Local businesses should not need a five-figure contract just to get a clean, credible website. We use a focused process, charge one flat project fee, and hand over the finished site."
               align="left"
             />
           </Reveal>
@@ -114,8 +114,8 @@ export default function PricingPage() {
             <Card className="border-border-color bg-white p-7 shadow-card md:p-9">
               <ul className="space-y-5">
                 {[
-                  'No bloated retainers or confusing packages.',
-                  'No required monthly LocalLift plan.',
+                  'One flat $500 project fee covers the entire build, from first design to launch day.',
+                  'The finished website, its files, and the agreed access transfer to you at handoff.',
                   websiteOffer.thirdPartyDisclosure,
                   websiteOffer.separateQuote,
                 ].map((item) => (

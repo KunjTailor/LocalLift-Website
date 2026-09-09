@@ -87,7 +87,7 @@ export default function FreeReviewPage() {
               {[
                 'No obligation to hire LocalLift',
                 'No rankings or lead guarantees',
-                'No required monthly LocalLift plan',
+                'One flat $500 price if you decide to build',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-success" aria-hidden="true" />
@@ -127,7 +127,7 @@ export default function FreeReviewPage() {
             Prefer to talk it through?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-cloud/80">
-            Book a short introduction instead. We’ll learn about the business and answer straightforward questions about the $500 website build.
+            Book a short introduction instead. We’ll learn about the business and answer straightforward questions about the Complete Launch Package.
           </p>
           <Button asChild size="lg" className="mt-7 bg-white text-lift-navy hover:bg-cloud">
             <Link href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer">

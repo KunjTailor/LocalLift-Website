@@ -111,7 +111,7 @@ export default function OpenGraphImage() {
               fontWeight: 500,
             }}
           >
-            No required monthly LocalLift fees. You own your website.
+            One flat project fee. You own your website.
           </div>
         </div>
 

@@ -93,8 +93,8 @@ export default function WorkPage() {
           <div className="mx-auto max-w-[760px]">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Want a website shaped around your business?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-cloud/80">
-              Start with a practical review, or tell us what you need from a new site. The standard build is $500 one time,
-              with no required LocalLift plan.
+              Start with a practical review, or tell us what you need from a new site. The Complete Launch Package
+              is a flat $500, and the finished website is yours.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="w-full sm:w-auto">

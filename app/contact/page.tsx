@@ -11,7 +11,7 @@ import { siteConfig } from '@/lib/site';
 export const metadata: Metadata = createPageMetadata({
   title: 'Start Your Website | LocalLift Studios',
   description:
-    'Tell LocalLift Studios about your local business and the professional website you need. The standard website build is $500 with no required monthly LocalLift fee.',
+    'Tell LocalLift Studios about your local business and the professional website you need. The Complete Launch Package is a flat $500.',
   path: '/contact',
 });
 
@@ -21,10 +21,10 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Start Your Website"
         title="Tell us what your business needs."
-        description="Share a few useful details and we’ll follow up about your website. The standard build is $500 one time, with no required monthly LocalLift plan."
+        description="Share a few useful details and we’ll follow up about your website. The Complete Launch Package is a flat $500, and everything the build needs is already in it."
       >
         <p className="text-sm font-bold text-lift-blue sm:text-base">
-          $500 one-time <span aria-hidden="true">•</span> Up to 5 core pages{' '}
+          $500 flat <span aria-hidden="true">•</span> Up to 5 core pages{' '}
           <span aria-hidden="true">•</span> Two revision rounds
         </p>
       </PageHero>

@@ -63,7 +63,7 @@ export default function AboutPage() {
             Small team. <span className="text-lift-blue">Direct communication.</span>
           </>
         }
-        description={`LocalLift is a student-founded web studio based in ${siteConfig.location}. We build focused, professional websites for local service businesses without requiring an ongoing LocalLift subscription.`}
+        description={`LocalLift is a student-founded web studio based in ${siteConfig.location}. We build focused, professional websites for local service businesses for one flat project price.`}
       >
         <p className="font-sans text-sm font-bold tracking-[0.12em] text-lift-blue uppercase">
           Based in Downingtown. Built for local businesses.

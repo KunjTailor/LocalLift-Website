@@ -25,7 +25,7 @@ import { benefits, faqItems, siteConfig, websiteOffer } from '@/lib/site';
 export const metadata: Metadata = createPageMetadata({
   title: 'Professional Websites for Local Businesses | LocalLift Studios',
   description:
-    'LocalLift Studios builds professional, mobile-friendly websites for local service businesses for a $500 one-time project fee.',
+    'LocalLift Studios builds professional, mobile-friendly websites for local service businesses. The Complete Launch Package is one flat $500 project fee.',
   path: '/',
 });
 
@@ -53,15 +53,15 @@ const problems = [
 const scopeGroups = [
   {
     title: 'Design and pages',
-    items: ['Up to five core pages', 'Custom professional design', 'Mobile-responsive layout'],
+    items: ['Up to five core pages', 'Custom design, never a template', 'Mobile-first responsive layout'],
   },
   {
     title: 'Inquiry essentials',
-    items: ['Contact or quote form', 'Click-to-call functionality', 'Clear service and contact paths'],
+    items: ['Contact and quote form', 'One-tap click-to-call', 'Clear service and contact paths'],
   },
   {
-    title: 'Launch foundations',
-    items: ['Local SEO foundations', 'Domain connection', 'Two revision rounds and handoff'],
+    title: 'Launch and handoff',
+    items: ['Local SEO foundations', 'Domain connection and launch support', 'Two revision rounds, then it’s yours'],
   },
 ] as const;
 
@@ -69,17 +69,17 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': `${siteConfig.url}/#website-build-service`,
-  name: 'Professional Website Build',
+  name: 'The Complete Launch Package',
   serviceType: 'Website design and development',
   description:
-    'A focused professional website build for local service businesses, including up to five core pages, two reasonable revision rounds, launch, and handoff.',
+    'A complete professional website build for local service businesses, including up to five core pages, local SEO foundations, two reasonable revision rounds, launch, handoff, and a 14-day post-launch window for build fixes.',
   provider: { '@id': `${siteConfig.url}/#organization` },
   offers: {
     '@type': 'Offer',
     url: `${siteConfig.url}/pricing`,
     price: websiteOffer.price,
     priceCurrency: 'USD',
-    description: 'One-time standard website-build project fee.',
+    description: 'One flat project fee for the complete standard website build.',
   },
 };
 
@@ -109,7 +109,7 @@ export default function HomePage() {
             <span className="text-lift-blue">$500 Flat.</span>
           </>
         }
-        description="We design and build modern, mobile-friendly websites for local service businesses for one straightforward price. No monthly LocalLift fees. Once it’s finished, it’s yours."
+        description="We design and build modern, mobile-friendly websites for local service businesses for one straightforward price. Everything the site needs is in the package. Once it’s finished, it’s yours."
         className="pb-20 md:pt-40 md:pb-24"
       >
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
@@ -124,7 +124,7 @@ export default function HomePage() {
           </Button>
         </div>
         <p className="mt-5 text-sm font-bold text-lift-navy">
-          $500 one-time <span aria-hidden="true">•</span> No monthly LocalLift fees{' '}
+          $500 flat <span aria-hidden="true">•</span> Custom design{' '}
           <span aria-hidden="true">•</span> You own your website
         </p>
       </PageHero>
@@ -135,7 +135,7 @@ export default function HomePage() {
             id="benefits-heading"
             eyebrow="The essentials"
             title="A website built around what local customers need"
-            description="Clear information, a credible first impression, and an easy next step—without turning your website into another required LocalLift bill."
+            description="Clear information, a credible first impression, and an easy next step—delivered as one finished website for one flat price."
             className="max-w-3xl"
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -200,7 +200,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="What you get"
-            title="The core website your business needs—for $500"
+            title="The Complete Launch Package, for $500"
             description="The standard project covers up to five core pages. Page examples are choices within that limit, not additional unlimited pages."
             className="max-w-3xl"
           />
@@ -281,7 +281,7 @@ export default function HomePage() {
             <ProcessSteps />
           </div>
           <p className="mt-8 rounded-card border border-blue-300/25 bg-blue-400/10 p-5 text-center text-base font-bold text-white">
-            You keep the site. There is no LocalLift subscription.
+            One flat price, one clear finish line, and the finished website is yours.
           </p>
         </div>
       </section>
@@ -301,10 +301,10 @@ export default function HomePage() {
               <h3 className="mt-5 text-2xl font-bold">Why $500 works</h3>
               <p className="mt-3 leading-7 text-slate-text">
                 A defined five-page scope, a direct working relationship, and a clean handoff let us
-                charge one straightforward project price without adding a required service plan.
+                put the whole build into one straightforward project price.
               </p>
               <ul className="mt-6 grid gap-3 text-sm font-bold text-lift-navy sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                {['No bloated retainers', 'No confusing packages', 'No required LocalLift plan'].map((item) => (
+                {['One flat project price', 'One clear scope', 'Full ownership at handoff'].map((item) => (
                   <li key={item} className="flex items-center gap-2 rounded-xl bg-cloud px-4 py-3">
                     <Check className="h-4 w-4 shrink-0 text-success" aria-hidden="true" />
                     {item}
@@ -333,8 +333,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Simple pricing"
-            title="One Website. One Price."
-            description="A complete standard website build with a defined scope, two revision rounds, and a final handoff."
+            title="One package. One price. Everything in it."
+            description="The Complete Launch Package is the only thing we sell: a full website build with a defined scope, two revision rounds, launch, and handoff for one flat $500."
             className="mb-10 max-w-3xl"
           />
           <WebsiteOffer />
@@ -349,7 +349,7 @@ export default function HomePage() {
               Frequently asked questions
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-text md:text-lg">
-              What the $500 project includes, what happens after launch, and what you will still control.
+              What the Complete Launch Package includes, what happens after launch, and what you will still control.
             </p>
           </div>
           <div className="mt-10">

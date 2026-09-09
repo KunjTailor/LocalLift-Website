@@ -5,7 +5,7 @@ import { siteConfig, websiteOffer } from '@/lib/site';
 export const metadata = createPageMetadata({
   title: `Terms of Service | ${siteConfig.name}`,
   description:
-    "Review LocalLift Studios' $500 one-time website-build terms, including scope, revisions, payment, ownership, and third-party costs.",
+    "Review LocalLift Studios' $500 flat-fee website-build terms, including scope, revisions, payment, ownership, and third-party costs.",
   path: '/terms',
 });
 
@@ -36,16 +36,17 @@ export default function TermsOfService() {
           <section className="mt-10 space-y-4">
             <h2 className="text-2xl font-bold text-lift-navy">1. Standard website service</h2>
             <p className="leading-7">
-              Our standard service is a {websiteOffer.priceLabel} one-time website build.
-              It includes up to five core pages, custom professional and mobile-responsive
-              design, a contact or quote form, click-to-call functionality, basic local
-              and on-page SEO setup, domain connection during launch, two reasonable
-              revision rounds, and final launch and handoff. Exact pages, features, and
-              deliverables are confirmed in writing for each project.
+              Our standard service is {websiteOffer.name}, a {websiteOffer.priceLabel} flat-fee
+              website build. It includes up to five core pages, custom professional and
+              mobile-responsive design, a contact or quote form, click-to-call functionality,
+              basic local and on-page SEO setup, domain connection during launch, two
+              reasonable revision rounds, final launch and handoff, a short handoff
+              walkthrough, and a 14-day window after launch for correcting build issues in
+              the delivered scope. Exact pages, features, and deliverables are confirmed in
+              writing for each project.
             </p>
             <p className="leading-7">
-              The standard build does not require a LocalLift subscription or monthly
-              LocalLift maintenance fee.
+              The standard build is billed as one flat, one-time project fee.
             </p>
           </section>
 
@@ -112,7 +113,7 @@ export default function TermsOfService() {
               the finished website and the files or access specified in the agreed handoff
               method. You retain ownership of content and assets you supplied and receive
               control of the completed website deliverables created for your project.
-              LocalLift does not require an ongoing subscription after handoff.
+              No further payment to LocalLift is required after final handoff.
             </p>
             <p className="leading-7">
               Third-party software, fonts, themes, plugins, stock assets, open-source code,

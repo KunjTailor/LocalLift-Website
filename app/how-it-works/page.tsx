@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, CircleCheck, FolderInput, ReceiptText } from 'lucide-react';
+import { ArrowRight, CircleCheck, FolderInput, LifeBuoy, ReceiptText } from 'lucide-react';
 import { Reveal, RevealList } from '@/components/animations/Reveal';
 import { PageHero } from '@/components/sections/PageHero';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
@@ -24,7 +24,12 @@ const handoffDetails = [
   {
     icon: FolderInput,
     title: 'You receive control',
-    description: 'After final payment, we provide the website and agreed files or access according to the handoff method.',
+    description: 'After final payment, we provide the website and agreed files or access according to the handoff method, plus a short walkthrough so nothing feels like a black box.',
+  },
+  {
+    icon: LifeBuoy,
+    title: 'A 14-day safety net',
+    description: 'For two weeks after launch, we fix build issues in the delivered scope at no extra cost. New pages or new features are quoted separately.',
   },
   {
     icon: ReceiptText,
@@ -68,8 +73,8 @@ export default function HowItWorksPage() {
                 From review to Launch &amp; Handoff
               </h2>
               <p className="mt-5 text-base leading-7 text-cloud/75 md:text-lg">
-                The project has a clear finish line. After handoff, there is no required LocalLift subscription or recurring
-                LocalLift fee.
+                The Complete Launch Package has a clear finish line: we design, build, launch, and hand the
+                finished website to you.
               </p>
             </div>
           </Reveal>
@@ -109,9 +114,9 @@ export default function HowItWorksPage() {
           <SectionHeading
             eyebrow="After Launch"
             title="You keep the website"
-            description="Once the project is approved, fully paid, and handed off, you control the site. LocalLift does not require an ongoing subscription."
+            description="Once the project is approved, fully paid, and handed off, you control the site. The finished website, its files, and the agreed access are yours."
           />
-          <RevealList className="mt-12 grid gap-6 md:grid-cols-3">
+          <RevealList className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {handoffDetails.map((detail) => (
               <Card key={detail.title} className="h-full border-border-color bg-cloud p-6 shadow-light md:p-7">
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-soft-blue text-lift-blue">

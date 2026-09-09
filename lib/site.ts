@@ -18,7 +18,7 @@ export const siteConfig = {
   location: 'Downingtown, Pennsylvania',
   calendlyUrl: 'https://calendly.com/localliftstudio/quick-intro-call',
   description:
-    'Professional websites for local businesses. $500 flat, with no required monthly LocalLift fees.',
+    'Professional websites for local businesses. One flat $500 project fee, and the finished website is yours to keep.',
 } as const;
 
 export const navigation = [
@@ -30,29 +30,63 @@ export const navigation = [
   { name: 'Contact', href: '/contact' },
 ] as const;
 
+const websiteOfferInclusionGroups = [
+  {
+    title: 'A design that earns trust',
+    items: [
+      'Custom design built around your brand and services',
+      'Up to 5 core pages, mapped out with you',
+      'Mobile-first layout that stays sharp on any screen',
+      'Photo and gallery treatment that shows off real work',
+    ],
+  },
+  {
+    title: 'Built to bring in calls',
+    items: [
+      'Contact and quote form wired straight to your inbox',
+      'One-tap click-to-call on every page',
+      'Service pages that answer what customers ask first',
+      'Clear next steps placed where people actually decide',
+    ],
+  },
+  {
+    title: 'Ready to be found',
+    items: [
+      'Local SEO foundations: titles, descriptions, heading structure',
+      'Location and service-area details search engines can read',
+      'Basic structured data where it helps',
+      'Speed and mobile-usability pass before launch',
+    ],
+  },
+  {
+    title: 'Launched and handed over',
+    items: [
+      'Domain connection and launch support',
+      'Two revision rounds before go-live',
+      'Cross-browser and device check on launch day',
+      'A short walkthrough so you know how everything works',
+      '14-day post-launch window for build fixes',
+      'Full ownership of the finished site, files, and agreed access',
+    ],
+  },
+] as const;
+
 export const websiteOffer = {
-  name: 'Professional Website',
+  name: 'The Complete Launch Package',
+  tagline: 'Your whole website — designed, built, launched, and handed to you.',
   price: 500,
   priceLabel: '$500',
-  cadence: 'One-time project fee',
+  cadence: 'One flat project fee',
   pageLimit: 'Up to 5 core pages',
-  inclusions: [
-    'Up to 5 core pages',
-    'Custom professional design',
-    'Mobile-responsive layout',
-    'Home page',
-    'Services page(s) within the 5-page limit',
-    'About page',
-    'Gallery or projects page when selected',
-    'Contact page with form setup',
-    'Click-to-call functionality',
-    'Basic local SEO setup',
-    'Basic on-page SEO structure',
-    'Domain connection during launch',
-    'Two reasonable revision rounds',
-    'Final launch and handoff',
-    'Client ownership after final payment',
+  highlights: [
+    'Custom design, never a stock template',
+    'Most builds go live in about 2–4 weeks',
+    'The finished website is yours to keep',
   ],
+  ownership:
+    'One flat payment covers the whole build. At handoff the finished website, its files, and the agreed access are yours.',
+  inclusionGroups: websiteOfferInclusionGroups,
+  inclusions: websiteOfferInclusionGroups.flatMap((group) => group.items),
   thirdPartyDisclosure:
     'Domain registration, paid hosting, premium software, and other third-party services are not included in the $500 project fee unless explicitly stated in writing.',
   separateQuote:
@@ -87,7 +121,7 @@ export const benefits: Benefit[] = [
   {
     title: 'You Own It',
     description:
-      'After completion and final payment, we hand over the website and agreed access. No required LocalLift plan.',
+      'After completion and final payment, we hand over the finished website, its files, and the agreed access. It is yours.',
     icon: Handshake,
   },
 ];
@@ -139,7 +173,7 @@ export const faqItems: FAQItem[] = [
   {
     question: 'Do I own my website?',
     answer:
-      'Yes. Once the project is completed and the final project balance has been paid, we provide the website and necessary access or files according to the agreed handoff method. LocalLift does not require an ongoing subscription.',
+      'Yes. Once the project is completed and the final project balance has been paid, we provide the website and necessary access or files according to the agreed handoff method. From that point the site is yours to run however you like.',
   },
   {
     question: 'What happens after the website is finished?',
@@ -147,9 +181,9 @@ export const faqItems: FAQItem[] = [
       'After launch and handoff, you control the website. You can maintain it yourself, hire someone else, or contact us separately for future work if needed.',
   },
   {
-    question: 'Do I have to pay LocalLift every month?',
+    question: 'Is $500 really the whole price?',
     answer:
-      'No. The standard website build is a $500 one-time project fee. There is no required LocalLift monthly plan.',
+      'Yes. The Complete Launch Package is one flat $500 project fee that covers the entire standard build, from design through launch and handoff. The only outside costs are your own domain registration and hosting, which you pay directly to those providers.',
   },
   {
     question: 'Who pays for the domain and hosting?',
@@ -159,7 +193,7 @@ export const faqItems: FAQItem[] = [
   {
     question: 'Can you make changes later?',
     answer:
-      'Yes, depending on availability. Future redesigns, new pages, or other work can be quoted separately. There is no required maintenance contract.',
+      'Yes, depending on availability. Build fixes are covered for 14 days after launch. Beyond that, future redesigns, new pages, or other work can be quoted separately whenever you want them.',
   },
   {
     question: 'How long does a website take?',
@@ -168,7 +202,8 @@ export const faqItems: FAQItem[] = [
   },
   {
     question: 'How many revisions are included?',
-    answer: 'Two reasonable revision rounds are included before final handoff.',
+    answer:
+      'Two reasonable revision rounds are included before final handoff, plus a 14-day window after launch for fixing build issues.',
   },
   {
     question: 'What do I need to provide?',

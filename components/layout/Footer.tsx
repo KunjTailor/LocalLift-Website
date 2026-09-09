@@ -23,7 +23,7 @@ export function Footer() {
               LocalLift Studios
             </Link>
             <p className="mt-4 max-w-xl text-base leading-7 text-cloud/75">
-              Professional websites for local businesses. $500 flat. No monthly LocalLift fees.
+              Professional websites for local businesses. The Complete Launch Package is a flat $500, and the finished site is yours.
             </p>
             <div className="mt-5 flex flex-col gap-2 text-sm text-cloud/80 sm:flex-row sm:items-center sm:gap-5">
               <span>{siteConfig.location}</span>
