@@ -1,56 +1,36 @@
-# LocalLift Studios
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Marketing site for LocalLift Studios’ $500 one-time website-build service for local businesses.
+## Getting Started
 
-## Stack
-
-- Next.js 16 App Router
-- React 19 and TypeScript
-- Tailwind CSS 4
-- Framer Motion for restrained reveal effects
-- Resend for server-side inquiry delivery
-
-## Local development
-
-Use Node.js 24, then install dependencies and start the development server:
+First, run the development server:
 
 ```bash
-npm install
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Verification
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Run the automated checks before deploying:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-```bash
-npm test
-npm run lint
-npm run build
-```
+## Learn More
 
-The public routes are defined once in `lib/site.ts` and used by the sitemap. Metadata defaults live in `app/layout.tsx`; each route provides its own title, description, canonical URL, and social metadata through `lib/metadata.ts`.
+To learn more about Next.js, take a look at the following resources:
 
-## Contact form
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-`app/contact/actions.ts` validates each inquiry, silently rejects honeypot submissions, and sends an allow-listed plain-text message to `team@localliftstudios.com` through Resend. Configure these server-only variables locally and in the production host:
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```bash
-RESEND_API_KEY=re_...
-RESEND_FROM_EMAIL="LocalLift Studios <website@your-verified-domain.example>"
-```
+## Deploy on Vercel
 
-Copy `.env.example` to `.env.local` for local development. Both values are required, and `RESEND_FROM_EMAIL` must use a sender domain verified in Resend. Never expose `RESEND_API_KEY` through a `NEXT_PUBLIC_` variable.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Deployment
-
-The app uses the standard Next.js production commands:
-
-```bash
-npm run build
-npm run start
-```
-
-It can be deployed to Vercel or another Node-compatible platform. Point the production project at `www.localliftstudios.com`, make that the canonical host, redirect the apex domain to it, and add the contact-form environment variables above. After deployment, verify inbox delivery and all routes plus `/robots.txt`, `/sitemap.xml`, `/manifest.webmanifest`, and `/opengraph-image` on the production host.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

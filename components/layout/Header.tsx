@@ -4,134 +4,178 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { navigation } from '@/lib/site';
 import { cn } from '@/lib/utils';
+
+const links = [
+  { name: 'Home', href: '/' },
+  { name: 'Work', href: '/work' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'How It Works', href: '/how-it-works' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+];
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const pathname = usePathname();
-  const headerRef = React.useRef<HTMLElement>(null);
-  const toggleRef = React.useRef<HTMLButtonElement>(null);
+  const menuRef = React.useRef<HTMLDivElement>(null);
 
+  const { scrollY } = useScroll();
+  
+  // Configuration for smooth scroll-linked values
+  const springConfig = { stiffness: 100, damping: 20, mass: 0.1, bounce: 0 };
+  
+  // 1. Header Background & Blur
+  const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.95]);
+  const smoothBgOpacity = useSpring(bgOpacity, springConfig);
+  const headerBg = useTransform(smoothBgOpacity, (v) => `rgba(255, 255, 255, ${v})`);
+  
+  const blurValue = useTransform(scrollY, [0, 80], [0, 12]);
+  const smoothBlur = useSpring(blurValue, springConfig);
+  const headerBlur = useTransform(smoothBlur, (v) => `blur(${v}px)`);
+
+  const borderOpacity = useTransform(scrollY, [60, 80], [0, 1]);
+  const smoothBorderOpacity = useSpring(borderOpacity, springConfig);
+  const borderColor = useTransform(smoothBorderOpacity, (v) => `rgba(226, 232, 240, ${v})`);
+
+  // 2. Announcement Bar Height & Alpha
+  const announcementHeight = useTransform(scrollY, [0, 80], [40, 0]); // Approx 40px height
+  const smoothAnnHeight = useSpring(announcementHeight, springConfig);
+  
+  const announcementAlpha = useTransform(scrollY, [0, 40], [1, 0]);
+  const smoothAnnAlpha = useSpring(announcementAlpha, springConfig);
+
+  // 3. Container Padding
+  const padY = useTransform(scrollY, [0, 80], [20, 12]); // py-5 (20px) to py-3 (12px)
+  const smoothPadY = useSpring(padY, springConfig);
+
+  // Close mobile menu when route changes
   React.useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  // Click outside to close mobile menu
   React.useEffect(() => {
-    if (!isMobileMenuOpen) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsMobileMenuOpen(false);
-        toggleRef.current?.focus();
-      }
-    };
-
-    const handlePointerDown = (event: PointerEvent) => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
       }
     };
-
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('pointerdown', handlePointerDown);
-
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMobileMenuOpen]);
 
   return (
-    <header
-      ref={headerRef}
-      className="fixed inset-x-0 top-0 z-50 border-b border-border-color/80 bg-white/95 shadow-light backdrop-blur-xl"
-    >
-      <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="z-50 inline-flex min-h-11 items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-lift-blue focus-visible:ring-offset-2"
-          aria-label="LocalLift Studios home"
+    <>
+      <motion.header
+        style={{
+          backgroundColor: headerBg,
+          backdropFilter: headerBlur,
+          borderBottomColor: borderColor,
+        }}
+        className="fixed top-0 left-0 right-0 z-50 border-b flex flex-col"
+      >
+        {/* 1. Announcement Bar (Integrated & Scroll-Linked) */}
+        <motion.div 
+          style={{ 
+            height: smoothAnnHeight,
+            opacity: smoothAnnAlpha,
+          }}
+          className="bg-lift-navy text-white text-center text-sm font-body font-medium flex items-center justify-center overflow-hidden whitespace-nowrap"
         >
-          <span
-            className="flex h-6 w-6 rotate-45 items-center justify-center rounded-sm bg-lift-blue shadow-light"
-            aria-hidden="true"
-          >
-            <span className="h-3 w-3 border border-lift-blue bg-white" />
-          </span>
-          <span className="font-sans text-xl font-extrabold tracking-tight text-lift-navy">
-            LocalLift
-          </span>
-        </Link>
+          <span>One flat $500 build. You own the site. No agency fluff.</span>
+        </motion.div>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-0.5 lg:flex">
-          {navigation.map((link) => {
-            const isActive =
-              link.href !== '/#faq' &&
-              (pathname === link.href || (link.href !== '/' && pathname.startsWith(`${link.href}/`)));
+        <motion.div 
+          style={{
+            paddingTop: smoothPadY,
+            paddingBottom: smoothPadY
+          }}
+          className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1200px] flex items-center justify-between relative" 
+          ref={menuRef}
+        >
+          <Link href="/" className="flex items-center space-x-2 z-50">
+            {/* Logo motif */}
+            <div className="w-6 h-6 rounded-sm bg-lift-blue flex items-center justify-center transform rotate-45">
+              <div className="w-3 h-3 bg-white border border-lift-blue" />
+            </div>
+            <span className="font-sans font-extrabold text-xl text-lift-navy tracking-tight">
+              LocalLift
+            </span>
+          </Link>
 
-            return (
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            {links.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn(
-                  'rounded-pill px-3.5 py-2.5 text-sm font-bold text-slate-text outline-none transition-colors hover:bg-cloud hover:text-lift-blue focus-visible:ring-2 focus-visible:ring-lift-blue focus-visible:ring-offset-2',
-                  isActive && 'bg-soft-blue text-lift-blue',
-                )}
+                className="text-[14px] font-bold text-slate-text hover:bg-cloud hover:text-lift-blue px-4 py-2 rounded-full transition-all duration-200"
               >
                 {link.name}
               </Link>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
 
-        <div className="flex items-center gap-3">
-          <Button asChild size="sm" className="hidden min-h-11 px-5 lg:inline-flex">
-            <Link href="/free-review">Get a Free Review</Link>
-          </Button>
-          <button
-            ref={toggleRef}
-            type="button"
-            className="relative z-50 inline-flex h-11 w-11 items-center justify-center rounded-button bg-cloud text-lift-navy outline-none transition-colors hover:bg-soft-blue focus-visible:ring-2 focus-visible:ring-lift-blue focus-visible:ring-offset-2 lg:hidden"
-            onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
-            )}
-          </button>
-        </div>
-      </div>
+          <div className="flex items-center space-x-3">
+            {/* Desktop CTA */}
+            <Button asChild size="sm" className="hidden lg:flex">
+              <Link href="/free-review">Get a Free Review</Link>
+            </Button>
 
-      <div
-        id="mobile-navigation"
-        hidden={!isMobileMenuOpen}
-        className="border-t border-border-color bg-white px-4 py-4 shadow-card lg:hidden"
-      >
-        <nav aria-label="Mobile navigation" className="mx-auto flex max-w-[1200px] flex-col gap-1">
-          {navigation.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex min-h-11 items-center rounded-button px-4 py-3 text-base font-bold text-lift-navy outline-none transition-colors hover:bg-cloud hover:text-lift-blue focus-visible:ring-2 focus-visible:ring-lift-blue"
+            {/* Mobile Menu Toggle Button */}
+            <button
+              className="lg:hidden relative z-50 p-2 rounded-full bg-cloud text-lift-navy hover:bg-cloud/80 transition-colors focus:outline-none"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
             >
-              {link.name}
-            </Link>
-          ))}
-          <Button asChild className="mt-3 w-full">
-            <Link href="/free-review" onClick={() => setIsMobileMenuOpen(false)}>
-              Get a Free Review
-            </Link>
-          </Button>
-        </nav>
-      </div>
-    </header>
+              <motion.div animate={isMobileMenuOpen ? "open" : "closed"}>
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </motion.div>
+            </button>
+          </div>
+
+          {/* Professional Mobile Popover Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }} // Spring-like ease out
+                className="absolute top-14 right-4 w-[240px] bg-white rounded-[16px] shadow-card border border-border-color p-2 lg:hidden flex flex-col z-40 overflow-hidden"
+              >
+                <div className="flex flex-col space-y-0.5">
+                  {links.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="w-full text-left px-4 py-3 text-[15px] font-semibold text-lift-navy hover:bg-cloud rounded-[10px] transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+                
+                <div className="h-px bg-border-color w-full my-2" />
+                
+                <div className="px-2 pb-2 pt-1">
+                  <Button asChild size="sm" className="w-full justify-center">
+                    <Link href="/free-review">Get a Free Review</Link>
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </motion.div>
+      </motion.header>
+    </>
   );
 }

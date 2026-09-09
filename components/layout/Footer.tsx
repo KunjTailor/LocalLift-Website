@@ -1,65 +1,48 @@
 import Link from 'next/link';
-import { siteConfig } from '@/lib/site';
-
-const footerLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Work', href: '/work' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-  { name: 'Privacy', href: '/privacy' },
-  { name: 'Terms', href: '/terms' },
-] as const;
 
 export function Footer() {
   return (
-    <footer className="bg-lift-navy py-14 text-cloud md:py-16">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.35fr_0.65fr] md:items-end">
-          <div>
-            <Link
-              href="/"
-              className="inline-flex rounded-lg font-sans text-2xl font-extrabold tracking-tight text-white outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-4 focus-visible:ring-offset-lift-navy"
-            >
-              LocalLift Studios
+    <footer className="bg-lift-navy text-cloud py-16 md:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1200px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="col-span-1 md:col-span-2 space-y-4">
+            <Link href="/" className="inline-flex items-center space-x-2">
+              <span className="font-sans font-extrabold text-2xl tracking-tight text-white">
+                LocalLift
+              </span>
             </Link>
-            <p className="mt-4 max-w-xl text-base leading-7 text-cloud/75">
-              Professional websites for local businesses. The Complete Launch Package is a flat $500, and the finished site is yours.
+            <p className="text-muted-slate text-sm max-w-sm">
+              Affordable websites for local businesses that need more trust online. One flat $500 build, and the finished site is yours to keep.
             </p>
-            <div className="mt-5 flex flex-col gap-2 text-sm text-cloud/80 sm:flex-row sm:items-center sm:gap-5">
-              <span>{siteConfig.location}</span>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="w-fit rounded-sm font-semibold text-blue-300 underline-offset-4 outline-none hover:text-white hover:underline focus-visible:ring-2 focus-visible:ring-blue-300"
-              >
-                {siteConfig.email}
+            <div className="pt-2 flex flex-col space-y-1 text-sm text-cloud">
+              <span>Downingtown, Pennsylvania</span>
+              <a href="mailto:team@localliftstudios.com" className="text-lift-blue hover:text-white transition-colors underline-offset-4 hover:underline">
+                team@localliftstudios.com
               </a>
             </div>
           </div>
-
-          <nav aria-label="Footer navigation">
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm font-semibold text-cloud/70 sm:grid-cols-3 md:grid-cols-2">
-              {footerLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-9 items-center rounded-sm outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-blue-300"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+          <div className="space-y-4">
+            <h4 className="font-sans font-bold text-white text-lg">Company</h4>
+            <ul className="space-y-3 text-sm text-muted-slate">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/work" className="hover:text-white transition-colors">Work</Link></li>
+              <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="/how-it-works" className="hover:text-white transition-colors">How It Works</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
-          </nav>
+          </div>
+          <div className="space-y-4">
+            <h4 className="font-sans font-bold text-white text-lg">Legal</h4>
+            <ul className="space-y-3 text-sm text-muted-slate">
+              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="/cookie-policy" className="hover:text-white transition-colors">Cookie Notice</Link></li>
+            </ul>
+          </div>
         </div>
-
-        <div className="flex flex-col gap-3 pt-6 text-xs text-cloud/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} LocalLift Studios. All rights reserved.</p>
-          <Link
-            href="/cookie-policy"
-            className="w-fit rounded-sm outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-blue-300"
-          >
-            Cookie Notice
-          </Link>
+        <div className="mt-16 pt-8 border-t border-slate-text/30 flex flex-col md:flex-row justify-between items-center text-xs text-muted-slate">
+          <p>© {new Date().getFullYear()} LocalLift. All rights reserved.</p>
         </div>
       </div>
     </footer>
